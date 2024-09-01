@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陳麒安暑假作業下在中心</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        .progress-bar-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            display: none; /* Initially hide the progress bar */
+            position: relative; /* For positioning the number absolutely */
+        }
+        .progress-bar {
+            height: 30px;
+            width: 0;
+            background-color: #4caf50;
+            transition: width 0.1s;
+        }
+        .progress-number {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            color: #4caf50;
+            font-weight: bold;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .page-content {
+            display: none; /* Initially hide the page content */
+        }
+        .active {
+            display: block;
+        }
+        /* 美化下載連結 */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        .button:active {
+            background-color: #004494;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="progress-page" class="page-content active">
+            <h1>載入中...</h1>
+            <div class="progress-bar-container">
+                <div id="progress-bar" class="progress-bar"></div>
+                <div id="progress-number" class="progress-number">0%</div>
+            </div>
+            <div id="progress-message" class="message">網頁載入中</div>
+        </div>
+
+        <div id="content-page" class="page-content">
+            <h1>本網站是陳麒安搭建<img id="dimg_DYPQZqPYKIXh1e8P3u7viQ0_143" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiSx85Za_Rahwr11XXcJmWSpOQhakUhaXPgw&amp;s" class="YQ4gaf" height="225" style="object-position:50% 58%" width="225" alt="警告標誌圖片PNG去背圖| 矢量圖案素材| 免费下载| Pngtree" data-csiid="DYPQZqPYKIXh1e8P3u7viQ0_70" data-atf="4" data-ilt="1724941076792" data-deferred="3">
+            警告!!!:以下文件請勿外傳感謝您的配合
+            <br><br>
+            <a href="http://gofile.me/7lJPH/k65COzkaL" class="button">影片下載</a>
+            <a href="http://gofile.me/7lJPH/qRIyIBpJ7" class="button">文件下載</a>
+        </div>
+    </div>
+
+    <script>
+        // 設置進度條的增長速度（毫秒）
+        const progressSpeed = 100;
+        let progress = 0;
+        const progressBar = document.getElementById('progress-bar');
+        const progressNumber = document.getElementById('progress-number');
+        const progressPage = document.getElementById('progress-page');
+        const contentPage = document.getElementById('content-page');
+
+        function updateProgress() {
+            if (progress < 100) {
+                progress += 1;
+                progressBar.style.width = progress + '%';
+                progressNumber.textContent = progress + '%';
+                setTimeout(updateProgress, progressSpeed);
+            } else {
+                // 當進度條達到 100% 時，顯示下一頁內容
+                progressPage.classList.remove('active');
+                contentPage.classList.add('active');
+            }
+        }
+
+        // 顯示進度條並開始更新進度
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.progress-bar-container').style.display = 'block';
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
